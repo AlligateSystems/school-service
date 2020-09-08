@@ -20,7 +20,8 @@ module.exports = class offerFormatter {
             mother_name: req.body.mother_name,
             address: req.body.address,
             contact_number: req.body.contact_number,
-            class:req.body.class
+            class:req.body.class,
+            roll_no:req.body.roll_no
         };
         return form_data;
     }

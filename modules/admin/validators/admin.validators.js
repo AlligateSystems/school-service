@@ -19,7 +19,8 @@ module.exports = class adminValidator {
             mother_name: "required",
             address: "required",
             contact_number: "required",
-            class: "required"
+            class: "required",
+            roll_no:"required"
         };
         return returnData;
     }
