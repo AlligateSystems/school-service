@@ -7,8 +7,9 @@ module.exports = class AdminModel {
     }
 
     async addStudent(form_data) {
-        var transactionQuery = "INSERT INTO `mst_student` (`birth_date`,`birth_place`,`cast`,`register_number`,`first_name`,`middle_name`,`last_name`) VALUES (?,?,?,?,?,?,?)";
-        return await dbconnection.executevaluesquery(transactionQuery, [form_data.birth_date, form_data.birth_place, form_data.cast, form_data.register_number, form_data.first_name, form_data.middle_name, form_data.last_name]);
+        var transactionQuery = "INSERT INTO `mst_student` (`birth_date`,`birth_place`,`cast`,`register_number`,`first_name`,`middle_name`,`last_name`,`mother_name`, `address`, `contact_number`, `class`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        return await dbconnection.executevaluesquery(transactionQuery, [form_data.birth_date, form_data.birth_place, form_data.cast, form_data.register_number, form_data.first_name, form_data.middle_name, form_data.last_name,
+        form_data.mother_name, form_data.address, form_data.contact_number, form_data.class]);
     }
 
     async findStudent(form_data) {

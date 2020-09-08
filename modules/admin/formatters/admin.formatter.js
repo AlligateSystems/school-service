@@ -17,6 +17,10 @@ module.exports = class offerFormatter {
             birth_date: req.body.birth_date,
             birth_place: req.body.birth_place,
             cast: req.body.cast,
+            mother_name: req.body.mother_name,
+            address: req.body.address,
+            contact_number: req.body.contact_number,
+            class:req.body.class
         };
         return form_data;
     }

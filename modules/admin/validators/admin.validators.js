@@ -15,7 +15,11 @@ module.exports = class adminValidator {
             last_name: "required",
             birth_date: "required|date",
             birth_place: "required",
-            cast: "required"
+            cast: "required",
+            mother_name: "required",
+            address: "required",
+            contact_number: "required",
+            class: "required"
         };
         return returnData;
     }
