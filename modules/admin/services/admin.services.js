@@ -4,6 +4,9 @@ const validator = require(path.join(global.appRoot + "/helper/client_api_validat
 let adminModel = new (require("../model/admin.mysql"))();
 var sha1 = require('sha1');
 const moment = require('moment');
+var fs = require('fs');
+var pdf = require('html-pdf');
+// var options = { format: 'Letter' };
 
 module.exports = class adminService {
     async login(form_data) {
@@ -175,5 +178,34 @@ module.exports = class adminService {
                 let error = (typeof err.errors != 'undefined') ? err.errors : err.message;
                 return responseMessages.failed("something_went_wrong", "", form_data.lang_code);
             })
+    }
+
+
+    async getReport(form_data) {
+        try {
+            let report_status;
+            const html = fs.readFileSync(require.resolve('../../../helper/example.html'), 'utf8')
+            setTimeout(await generatePdf, 4000);
+            async function generatePdf(){
+                await pdf.create(html).toStream(async function (err, stream) {
+                    console.log("errerr", err, "1234err", !err)
+                    if (!err) {
+                        report_status="Fail";
+                        await adminModel.insertPfdDetails(path,report_status)
+                        return responseMessages.success("report_generate_fail");
+                    }
+                    var path = `./downloads/${Date.now()}.pdf`
+                    await adminModel.insertPfdDetails(path,report_status)
+                    stream.pipe(fs.createWriteStream(path));
+                })
+                return responseMessages.success("success_report");
+
+            }
+           
+        }
+        catch (err) {
+            console.log("err", err)
+            return responseMessages.failed("something_went_wrong", "", form_data.lang_code);
+        }
     }
 }

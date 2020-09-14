@@ -20,7 +20,7 @@ module.exports = class adminValidator {
             address: "required",
             contact_number: "required",
             class: "required",
-            roll_no:"required"
+            roll_no: "required"
         };
         return returnData;
     }
@@ -36,6 +36,13 @@ module.exports = class adminValidator {
     getStudentById() {
         let form_data = {
             register_number: "required",
+        };
+        return form_data;
+    }
+
+    getReport() {
+        let form_data = {
+            activity: "required",
         };
         return form_data;
     }

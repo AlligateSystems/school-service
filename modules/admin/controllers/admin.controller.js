@@ -208,4 +208,29 @@ module.exports = class AdminController {
         // return response to client request
         return res.json(returnResponse);
     }
+
+    async getReport(req, res) {
+        let returnResponse = {}
+        // Format request data
+        let form_data = adminFormatter.getReport(req);
+        // Getting voucher Validator
+        let rules = adminValidator.getReport();
+        // Check and store validation data
+        let validation = new Validator(form_data, rules);
+        // Check validation is passed or failed
+        if (validation.passes() && !validation.fails()) {
+            /**
+             * Validation success
+             */
+            returnResponse = await adminService.getReport(form_data);
+            console.log("returnResponse",returnResponse)
+        } else {
+            // store return code and message in returnResponse variable
+            returnResponse = responseMessages.validation_error;
+            // Getting errors of validation and store in returnResponse variable
+            returnResponse.errors = validation.errors.errors;
+        }
+        // return response to client request
+        return res.json(returnResponse);
+    }
 }

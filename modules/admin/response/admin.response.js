@@ -92,9 +92,18 @@ let response = {
         message: "working days of year update fail",
         status_code: "CC200"
     },
+    success_report:{
+        message: "generating report takes times,for downloading report check download list",
+        status_code: "CC200"
+    },
+    report_generate_fail:{
+        message: "report generate fail,please try later",
+        status_code: "CC200"
+    }
 }
 module.exports = response;
 module.exports.success = function (key, values) {
+    console.log("key, values",key, values)
     let returnResponse = response[key] == undefined ? {} : response[key];
     returnResponse.status = true;
     values ? returnResponse.values = values : "";

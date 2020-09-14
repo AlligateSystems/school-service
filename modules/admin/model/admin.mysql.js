@@ -81,4 +81,15 @@ module.exports = class AdminModel {
         var transactionQuery = `update mst_working_days set working_days = ? where  year ='${form_data.year}'`
         return await dbconnection.executevaluesquery(transactionQuery, [JSON.stringify(form_data)]);
     }
+
+    async insertPfdDetails(path,report_status) {
+        if(report_status=="Fail"){
+            report_status=2
+        }else{
+            report_status=1
+        }
+        var transactionQuery = "INSERT INTO `mst_reports` (`file_path`,`report_status`) VALUES (?,?)"
+        return await dbconnection.executevaluesquery(transactionQuery, [path,report_status]);
+    }
+
 }

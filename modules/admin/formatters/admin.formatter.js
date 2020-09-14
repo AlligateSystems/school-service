@@ -20,8 +20,8 @@ module.exports = class offerFormatter {
             mother_name: req.body.mother_name,
             address: req.body.address,
             contact_number: req.body.contact_number,
-            class:req.body.class,
-            roll_no:req.body.roll_no
+            class: req.body.class,
+            roll_no: req.body.roll_no
         };
         return form_data;
     }
@@ -35,14 +35,14 @@ module.exports = class offerFormatter {
         return form_data;
     }
 
-    getStudentById(req){
+    getStudentById(req) {
         let form_data = {
             register_number: req.body.register_number
         };
         return form_data;
     }
 
-    editStudentDetail(req){
+    editStudentDetail(req) {
         let form_data = {
             register_number: req.body.register_number,
             first_name: req.body.first_name,
@@ -55,11 +55,11 @@ module.exports = class offerFormatter {
         return form_data;
     }
 
-    addWorkingDays(req){
+    addWorkingDays(req) {
         let form_data = {
             year: req.body.year,
             january: req.body.january,
-            february : req.body.february,
+            february: req.body.february,
             march: req.body.march,
             april: req.body.april,
             may: req.body.may,
@@ -74,18 +74,25 @@ module.exports = class offerFormatter {
         return form_data;
     }
 
-    getWorkingDays(req){
+    getWorkingDays(req) {
         let form_data = {
             year: req.body.year
         };
         return form_data;
     }
 
-    editWorkingDays(req){
+    getReport(req) {
+        let form_data = {
+            activity: req.body.activity
+        };
+        return form_data;
+    }
+
+    editWorkingDays(req) {
         let form_data = {
             year: req.body.year,
             january: req.body.january,
-            february : req.body.february,
+            february: req.body.february,
             march: req.body.march,
             april: req.body.april,
             may: req.body.may,
@@ -99,5 +106,4 @@ module.exports = class offerFormatter {
         };
         return form_data;
     }
-
 }
